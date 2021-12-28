@@ -1,12 +1,11 @@
 {
-  "name": "kafka-demo",
+  "name": "kafka-demo-producer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:producer": "node ./producer",
-    "start:consumer": "node ./consumer"
+    "start": "node ./index.js"
   },
   "author": "",
   "license": "ISC",
