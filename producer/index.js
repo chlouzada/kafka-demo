@@ -1,21 +1,20 @@
-console.log("producer");
+import { Kafka } from "kafkajs";
 
-// import { KafkaClient, Producer } from "kafka-node";
+const kafka = new Kafka({
+  clientId: "producer-app",
+  brokers: ["localhost:9092"],
+});
 
-// const client = new KafkaClient({ kafkaHost: "0.0.0.0:9092" });
+const producer = kafka.producer();
 
-// const producer = new Producer(client);
+async function execute() {
+  console.log("Producer new message");
+  await producer.connect();
+  await producer.send({
+    topic: "kafka-demo",
+    messages: [{ value: "Hello KafkaJS user!" }],
+  });
+  await producer.disconnect();
+}
 
-// producer.on("ready", () => {
-//   const payloads = [{ topic: "topico-teste", messages: "hi" }];
-
-//   producer.send(payloads, function (err, data) {
-//     console.log(err);
-//     console.log(data);
-//   });
-// });
-
-// setInterval(() => {
-//   console.log(client)
-// }
-// , 1000);
+setInterval(execute, 1000);
